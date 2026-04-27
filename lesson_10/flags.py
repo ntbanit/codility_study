@@ -10,8 +10,10 @@ def solution(A):
     # print(peaks)
 
     M = len(peaks)
-    K = min(M, int(math.sqrt(N)))
-    max_flags = 1 
+    if M == 0 :
+        return 0
+    
+    K = min(M, int(math.sqrt(N)) + 1)
     while K > 1 :
         count = 1
         lastFlag = peaks[0]
@@ -20,6 +22,8 @@ def solution(A):
                 count += 1
                 lastFlag = peak
         # print(f"K={K} count={count}")
-        max_flags = max(max_flags, min(K, count))
+        if count >= K:
+            return K
         K -= 1
-    return max_flags
+    
+    return 1
