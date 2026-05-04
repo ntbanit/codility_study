@@ -1,3 +1,4 @@
+# https://app.codility.com/programmers/trainings/1/longest_password/
 def solution(S):
     def valid(password) :
         letters = digits = 0
@@ -7,14 +8,16 @@ def solution(S):
             elif 'a' <= c <= 'z' or 'A' <= c <= 'Z' :
                 letters += 1
             else :
-                return 0
+                return -1
         if letters % 2 == 0 and digits % 2 == 1 :
-            return letters +digits
-        return 0
+            return letters + digits
+        return -1
     words = S.split(' ')
-    
-    output = 0
+    # print(words)
+    output = -1
     for word in words : 
-        output = max(output, valid(word))
+        cnt = valid(word)
+        # print(f"word={word} cnt={cnt}")
+        output = max(output, cnt)
             
     return output
